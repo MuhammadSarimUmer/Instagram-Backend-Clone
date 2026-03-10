@@ -1,6 +1,8 @@
 const express = require('express')
 const postController = require('../controllers/posts.controller')
-const upload = require('multer')({ storage: multer.memoryStorage() })
+const multer = require('multer')
+
+const upload = multer({ storage: multer.memoryStorage() })
 const authMiddleware = require('../middleware/auth.middleware')
 const router = express.Router()
 
@@ -17,3 +19,5 @@ router.get('/posts/:id', authMiddleware, postController.getPostByUser)
 router.delete('/post/:id', authMiddleware, postController.deletePost)
 
 router.patch('/post/:id', authMiddleware, postController.updatePost)
+
+module.exports = router
